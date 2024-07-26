@@ -66,11 +66,11 @@ app.post("/login", async (req, res) => {
       res.send({ jwtToken });
     } else {
       res.status(400);
-      res.send("Invalid password");
+      res.statusText("Invalid password");
     }
   } else {
     res.status(400);
-    res.send("Invalid username");
+    res.statusText("Invalid username");
   }
 });
 
