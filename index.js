@@ -66,34 +66,50 @@ app.post("/login", async (req, res) => {
       res.send({ jwtToken });
     } else {
       res.status(400);
-      res.statusText("Invalid password");
+      res.send("Invalid password");
     }
   } else {
     res.status(400);
-    res.statusText("Invalid username");
+    res.send("Invalid username");
   }
 });
 
-//welcome user api
-app.get("/", async (req, res) => {
+// authentication middleware function
+const authenticationToken = (req, res, next) => {
   let jwtToken;
   const authHeader = req.headers["authorization"];
-  console.log(authHeader);
+
   if (authHeader !== undefined) {
     jwtToken = authHeader.split(" ")[1];
   }
-  console.log(jwtToken);
+
   if (jwtToken !== undefined) {
     jwt.verify(jwtToken, "spicycarvings_guna_key", async (error, payload) => {
       if (error) {
-        res.send("Invalid JWT Token...");
+        response.status(401);
+        res.send("Invalid JWT Token");
       } else {
         req.username = payload.username;
-        const { username } = req;
-        const selectUserQuery = `select * from user where username = '${username}'`;
-        const dbUser = await db.get(selectUserQuery);
-        res.send(`Hi ${dbUser.username}...`);
+        next();
       }
     });
+  } else {
+    response.status(401);
+    response.send("Invalid JWT Token");
   }
+};
+
+//home page api
+app.get("/", authenticationToken, async (req, res) => {
+  const { username } = req;
+  const selectUserQuery = `select username, gender from user where username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  res.send(dbUser);
+});
+
+app.get("/profile", authenticationToken, async (req, res) => {
+  const { username } = req;
+  const selectUserQuery = `select * from user where username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  res.send(dbUser);
 });
