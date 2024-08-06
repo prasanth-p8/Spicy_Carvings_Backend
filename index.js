@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const dbPath = path.join(__dirname, "spicycarvings.db");
+const dbPath = path.join(__dirname, "spicycravings.db");
 
 let db = null;
 
