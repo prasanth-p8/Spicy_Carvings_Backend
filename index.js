@@ -86,7 +86,7 @@ const authenticationToken = (req, res, next) => {
   if (jwtToken !== undefined) {
     jwt.verify(jwtToken, "spicycarvings_guna_key", async (error, payload) => {
       if (error) {
-        response.status(401);
+        res.status(401);
         res.send("Invalid JWT Token");
       } else {
         req.username = payload.username;
@@ -94,8 +94,8 @@ const authenticationToken = (req, res, next) => {
       }
     });
   } else {
-    response.status(401);
-    response.send("Invalid JWT Token");
+    res.status(401);
+    res.send("Invalid JWT Token");
   }
 };
 
