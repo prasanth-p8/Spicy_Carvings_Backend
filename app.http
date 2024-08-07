@@ -26,3 +26,9 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/menu
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g
+
+
+###
+GET http://localhost:3000/menu?search_item=&food_category=Burger&label=Non%20Veg&order_by=price&order=ASC
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g
+

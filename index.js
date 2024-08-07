@@ -117,7 +117,17 @@ app.get("/profile", authenticationToken, async (req, res) => {
 //menu page api
 
 app.get("/menu", authenticationToken, async (req, res) => {
-  const selectUserQuery = `select * from menu`;
+  const {
+    search_item = "",
+    food_category = "",
+    label = "",
+    order_by = "price",
+    order = "ASC",
+  } = req.query;
+  const selectUserQuery = `select * from menu where item_name LIKE '%${search_item}%' 
+  or category LIKE '%${food_category}%'
+  or food_label LIKE '%${label}%'
+  order by ${order_by} ${order}`;
   const dbUser = await db.all(selectUserQuery);
   res.send(dbUser);
 });
