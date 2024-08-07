@@ -124,11 +124,21 @@ app.get("/menu", authenticationToken, async (req, res) => {
     order_by = "price",
     order = "ASC",
   } = req.query;
-  const selectUserQuery = `select * from menu where item_name LIKE '%${search_item}%' 
-  or category LIKE '%${food_category}%'
-  or food_label LIKE '%${label}%'
-  order by ${order_by} ${order}`;
-  const dbUser = await db.all(selectUserQuery);
+  console.log(search_item);
+  console.log(food_category);
+  console.log(label);
+  const selectUserQuery = `select * from menu  
+                          WHERE item_name LIKE ?
+                          AND (? = '' OR category = ?)
+                          AND (? = '' OR food_label = ?)
+                          ORDER BY ${order_by} ${order}`;
+  const dbUser = await db.all(selectUserQuery, [
+    `%${search_item}%`,
+    food_category,
+    food_category,
+    label,
+    label,
+  ]);
   res.send(dbUser);
 });
 

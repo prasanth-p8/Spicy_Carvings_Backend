@@ -29,6 +29,6 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ
 
 
 ###
-GET http://localhost:3000/menu?search_item=&food_category=Burger&label=Non%20Veg&order_by=price&order=ASC
+GET http://localhost:3000/menu?search_item=fish&category='Burger'
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g
 
