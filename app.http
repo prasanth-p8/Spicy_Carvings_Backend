@@ -6,11 +6,11 @@ post http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username":"mogaan",
-    "firstname":"mogaan",
-    "lastname":"rajini",
-    "password":"mogan@rajini",
-    "email":"mogaanrajini@gmail.com",
+    "username":"praveen",
+    "firstname":"praveen",
+    "lastname":"raj",
+    "password":"raj@praveen",
+    "email":"praveenraj12@gmail.com",
     "gender":"male"
 }
 
@@ -22,3 +22,7 @@ Content-Type: application/json
     "username":"mogaan",
     "password":"mogan@rajini"
 }
+
+###
+GET http://localhost:3000/menu
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g

@@ -113,3 +113,20 @@ app.get("/profile", authenticationToken, async (req, res) => {
   const dbUser = await db.get(selectUserQuery);
   res.send(dbUser);
 });
+
+//menu page api
+
+app.get("/menu", authenticationToken, async (req, res) => {
+  const selectUserQuery = `select * from menu`;
+  const dbUser = await db.all(selectUserQuery);
+  res.send(dbUser);
+});
+
+//profile page api
+
+app.get("/profile", authenticationToken, async (req, res) => {
+  const { username } = req;
+  const selectUserQuery = `select * from user where username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  res.send(dbUser);
+});
