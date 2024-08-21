@@ -2,6 +2,10 @@ GET http://localhost:3000/
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g
 
 ###
+GET http://localhost:3000/profile
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZ2FhbiIsImlhdCI6MTcyMjcwNDk0MX0.2YQxXfioBk8dDpeacP_XAxmnyIIMwr81qVtDU7ziZ9g
+
+###
 post http://localhost:3000/register
 Content-Type: application/json
 
@@ -39,7 +43,7 @@ Content-Type: application/json
 
 {
     "items":4,
-    "total_amount":1800,
+    "total_price_amount":1800,
     "cart_items":[
         {"id": 5, "itemName": "Chicken Burger", "category": "Burger", "price": 115, "foodLabel": "Non Veg"},
         {"category":"Pizza","foodLabel":"Non Veg","id":61, "itemName":"Chicken Pizza","mustTry":"", "price": 220, "quantity":2},

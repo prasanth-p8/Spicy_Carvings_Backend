@@ -143,25 +143,29 @@ app.get("/profile", authenticationToken, async (req, res) => {
 //place order api
 app.post("/cart", authenticationToken, async (req, res) => {
   const { username } = req;
-  const { items, total_amount, cart_items, customer_location } = req.body;
+  const { items, total_price_amount, cart_items, customer_location } = req.body;
 
-  const order_placed_dt = new Date();
+  const order_placed_dt = new Date().toISOString();
 
   console.log("Username:", username);
   console.log("Items:", items);
-  console.log("Total Amount:", total_amount);
+  console.log("Total Amount:", total_price_amount);
   console.log("Cart Items:", cart_items);
   console.log("Customer Location:", customer_location);
   console.log("Order Placed:", order_placed_dt);
 
-  const stringify_cart_data = JSON.stringify(cart_items);
-  console.log(stringify_cart_data);
-
   const placeOrderQuery = `INSERT INTO order_history
                           (username, items_in_cart, total_amount, cart, location, order_placed) 
-                            VALUES('${username}', ${items}, ${total_amount}, '${stringify_cart_data}', '${customer_location}', '${order_placed_dt}')`;
+                            VALUES(?,?,?,?,?,?)`;
 
-  await db.run(placeOrderQuery);
+  await db.run(placeOrderQuery, [
+    username,
+    items,
+    total_price_amount,
+    JSON.stringify(cart_items),
+    customer_location,
+    order_placed_dt,
+  ]);
   res.send(
     "Thank you for ordering at Spicy Cravings! We hope you enjoy our delicious food and have a wonderful dining experience."
   );
