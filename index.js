@@ -163,18 +163,11 @@ app.post("/cart", authenticationToken, async (req, res) => {
     items,
     total_price_amount,
     JSON.stringify(cart_items),
+
     customer_location,
     order_placed_dt,
   ]);
   res.send(
     "Thank you for ordering at Spicy Cravings! We hope you enjoy our delicious food and have a wonderful dining experience."
   );
-});
-
-//order history api
-app.get("/order-history", authenticationToken, async (req, res) => {
-  const { username } = req;
-  const orderHistoryQuery = `SELECT * FROM order_history WHERE username = '${username}'`;
-  const dbResponse = await db.all(orderHistoryQuery);
-  res.send(dbResponse);
 });
